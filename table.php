@@ -10,18 +10,29 @@
 	}
 	
 	//salvestan andmebaasi
-	if(isset($_POST["save"])){
+	if(isset($_POST["salvesta"])){
 		updateCar($_POST["id"],$_POST["plate_number"],$_POST["color"]);
 		
 	}
-	
-	//käivitan funktsiooni
+	$keyword="";
+	if(isset($_GET["keyword"])){
+		$keyword=$_GET["keyword"];
+		$array_of_cars = getCarData($keyword);
+	}else{
+		//kåª¶itan funktsiooni
 	$array_of_cars = getCarData(); 
-	//trükin välja esimese auto
+	//trğ«©® vå­ªa esimese auto
 	//echo $array_of_cars[0]->id." ".$array_of_cars[0]->plate;
+	}
+	
 ?>
 
 <h2>Tabel</h2>
+
+<form action="table.php" method="get">
+	<input type="search" name="keyword" value="<?=$keyword;?>">
+	<input type="submit">
+</form>
 <table>
 	<tr>
 		<th>id</th>
